@@ -11,19 +11,17 @@ const obj = Object.fromEntries(output);
 console.log("max and min of array :");
 console.log(obj);
 //show number and their occurence into object
-let dataset = [2,2,4,2,6,4,7,8];
-let max1=Math.max.apply(null,dataset);
-let min1=Math.min.apply(null,dataset);
-let counter=0;
-let array=[];
-for (let i=min1;i<max1;i++){
-    counter=0;
-   for (let j=0;j<dataset.length;j++){
-       if (dataset[j] === i) counter++;
-   }
-   if (counter!==0)
-      array.push([i,counter]);
-
+let dataset = [2, 2, 4, 2, 6, 4, 7, 8];
+let counts = {}, i, value,count1;
+for (i = 0; i < dataset.length; i++) {
+    value = dataset[i];
+    if (typeof counts[value] === "undefined") {
+        counts[value] = 1;
+    } else {
+            count1 = dataset.reduce(function(n, val) {
+            return   n + (val === value) ;
+    }, 0);
+            counts[value]=count1;
+    }
 }
-const obj2 = Object.fromEntries(array);
-console.log(obj2);
+console.log(counts);
